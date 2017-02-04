@@ -1,7 +1,8 @@
-function RoutingTableReq (deviceId, flowId, dnrLinks){
+function DnrSyncReq (deviceId, flowId, dnrLinks, contributingNodes){
   this.deviceId = deviceId
   this.flowId = flowId
   this.dnrLinks = dnrLinks
+  this.contributingNodes = contributingNodes
 
   this.toString = function (){
     return JSON.stringify(this)
@@ -16,24 +17,30 @@ function RoutingTableReq (deviceId, flowId, dnrLinks){
     this.deviceId = obj.deviceId
     this.flowId = obj.flowId
     this.dnrLinks = obj.dnrLinks
+    this.contributingNodes = obj.contributingNodes
     return this
   }
 }
 
-function RoutingTableRes (){
-  this.set = function (link, action){
-    this[link] = action
+function DnrSyncRes (dnrLinks, brokers){
+  this.dnrLinks = dnrLinks
+  this.brokers = brokers
+
+  this.toString = function (){
+    return JSON.stringify(this)
   }
 
   this.fromString = function (str){
     let obj = JSON.stringify(str)
-    for (let k in obj){
-      this[k] = obj[k]
-    }
+    return this.fromObj(obj)
+  }
+
+  this.fromObj = function (obj){
+    this.dnrLinks = obj.dnrLinks
+    this.brokers = obj.brokers
     return this
   }
 }
-
 
 module.exports = {
   Context: {
@@ -42,6 +49,15 @@ module.exports = {
     FETCH_FORWARD : 3,
     RECEIVE_REDIRECT : 4
   },
-  RoutingTableReq: RoutingTableReq,
-  RoutingTableRes: RoutingTableRes
+  DnrSyncReq: DnrSyncReq,
+  DnrSyncRes: DnrSyncRes,
+
+  TOPIC_DNR_HB: 'dnr_hb',
+  TOPIC_REGISTER: 'register',
+  TOPIC_REGISTER_ACK: 'register_ack',
+  TOPIC_DNR_SYN_REQ: 'dnr_sync_req',
+  TOPIC_DNR_SYN_RES: 'dnr_sync_res',
+  TOPIC_DNR_SYN_RESS: 'dnr_sync_ress',
+  TOPIC_FLOW_DEPLOYED: 'flow_deployed'
 }
+
