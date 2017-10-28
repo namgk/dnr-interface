@@ -58,6 +58,9 @@ module.exports = {
   TOPIC_DNR_SYN_REQ: 'dnr_sync_req',
   TOPIC_DNR_SYN_RES: 'dnr_sync_res',
   TOPIC_DNR_SYN_RESS: 'dnr_sync_ress',
-  TOPIC_FLOW_DEPLOYED: 'flow_deployed'
+  TOPIC_FLOW_DEPLOYED: 'flow_deployed',
+  TOPIC_REGISTER_REQ: 'register_req',
+  MQTT_WS_PATH: '/mqttws'
+
 }
 
