@@ -47,7 +47,9 @@ module.exports = {
     NORMAL : 1,
     DROP : 2,
     FETCH_FORWARD : 3,
-    RECEIVE_REDIRECT : 4
+    RECEIVE_REDIRECT : 4,
+    COPY_FETCH_FORWARD: 5,
+    RECEIVE_REDIRECT_COPY: 6
   },
   DnrSyncReq: DnrSyncReq,
   DnrSyncRes: DnrSyncRes,
