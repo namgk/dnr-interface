@@ -1,6 +1,6 @@
 {
   "name": "dnr-interface",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Constants and interfaces for dnr daemon and operator",
   "main": "index.js",
   "scripts": {
